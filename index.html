@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#101820">
+  <meta name="description" content="Driving School Simulator – mobilní prototyp manuálního řízení.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <title>Driving School Simulator</title>
+</head>
+<body>
+  <main id="game">
+    <div id="scene" aria-label="3D jízdní prostředí"></div>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">D</span><span>DRIVING SCHOOL <b>SIMULATOR</b></span></div>
+      <div class="top-actions">
+        <button id="cameraBtn" class="small-btn">KAMERA: KOKPIT</button>
+        <button id="mirrorBtn" class="small-btn active">ZRCÁTKO</button>
+        <button id="leftSignal" class="small-btn">◀ BLINKR</button>
+        <button id="rightSignal" class="small-btn">BLINKR ▶</button>
+        <button id="lightsBtn" class="small-btn">SVĚTLA</button>
+        <button id="pauseBtn" class="small-btn">Ⅱ</button>
+      </div>
+    </header>
+    <section class="hud">
+      <div class="speed-card"><strong id="speed">0</strong><span>KM/H</span><small class="limit">LIMIT <b id="speedLimit">50</b></small></div>
+      <div class="gear-card"><small>PŘEVOD</small><strong id="gearReadout">N</strong></div>
+      <div class="status-card"><span id="engineStatus" class="status-dot"></span><span id="statusText">MOTOR V CHODU</span><small id="rpm">800 RPM</small></div>
+    </section>
+    <aside id="mirror" class="mirror">
+      <div class="mirror-label">ZPĚTNÉ ZRCÁTKO</div>
+      <div class="mirror-view"><span>POHLED ZA VOZIDLO</span></div>
+    </aside>
+    <div id="message" class="message">Sešlápni spojku, zařaď 1 a pomalu přidávej plyn.</div>
+    <div class="indicators"><span id="leftIndicator">◀</span><span id="rightIndicator">▶</span><span id="lightIndicator">☼</span></div>
+    <div class="dashboard-mini"><span>OTÁČKY</span><b id="rpmGauge">800</b><i>RPM × 1000</i></div>
+    <section class="controls">
+      <div class="left-controls">
+        <div class="steering-wrap">
+          <div class="control-label">VOLANT</div>
+          <div id="steering" class="steering"><div class="wheel-inner">✥</div></div>
+          <input id="steerRange" type="range" min="-100" max="100" value="0" aria-label="Volant">
+        </div>
+        <div class="clutch-wrap">
+          <div class="control-label">SPOJKA <span id="clutchPct">100%</span></div>
+          <div id="clutchTrack" class="pedal-track">
+            <div id="clutchFill" class="pedal-fill clutch-fill"></div>
+            <div class="pedal-hint">DRŽ A POSOUVEJ PRST NAHORU / DOLŮ</div>
+          </div>
+        </div>
+      </div>
+      <div class="right-controls">
+        <div class="gearbox">
+          <div class="control-label">ŘAZENÍ</div>
+          <div class="gear-grid">
+            <button data-gear="R">R</button><button data-gear="1">1</button><button data-gear="3">3</button>
+            <button data-gear="2">2</button><button data-gear="4">4</button><button data-gear="5">5</button>
+            <button data-gear="N" class="neutral">N</button><button data-gear="6">6</button>
+          </div>
+        </div>
+        <div class="pedals">
+          <button id="brake" class="pedal brake"><span>BRZDA</span><b>■</b></button>
+          <button id="gas" class="pedal gas"><span>PLYN</span><b>▲</b></button>
+        </div>
+      </div>
+    </section>
+    <div id="lessonPanel" class="lesson-panel">
+      <div><b>AUTOŠKOLA</b><span id="lessonText">Lekce 1: Rozjezd</span></div>
+      <button id="lessonBtn">DALŠÍ LEKCE</button>
+    </div>
+    <div id="pauseOverlay" class="overlay hidden">
+      <div class="modal">
+        <h1>Pozastaveno</h1>
+        <p>Driving School Simulator</p>
+        <button id="resumeBtn" class="primary">POKRAČOVAT</button>
+        <button id="resetBtn">RESETOVAT JÍZDU</button>
+      </div>
+    </div>
+    <div id="startOverlay" class="overlay">
+      <div class="modal start-modal">
+        <div class="brand-mark large">D</div>
+        <h1>DRIVING SCHOOL<br><b>SIMULATOR</b></h1>
+        <p>Mobilní prototyp • Manuální převodovka</p>
+        <div class="mode-row"><button id="freeMode" class="mode active">VOLNÁ JÍZDA</button><button id="schoolMode" class="mode">AUTOŠKOLA</button></div>
+        <button id="startBtn" class="primary">START JÍZDY</button>
+        <small>Pro nejlepší zážitek otoč telefon na šířku.</small>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
